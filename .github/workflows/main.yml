@@ -16,6 +16,6 @@ jobs:
       - name: Log in Docker
         run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag lab3
+        run: docker build . --file Dockerfile --tag leshafatin/devops-lab3
       - name: Docker Push
-        run: docker push  ${{ secrets.DOCKER_USERNAME }}/devops-lab3
+        run: docker push leshafatin/devops-lab3

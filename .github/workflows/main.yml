@@ -1,29 +1,23 @@
-name: Build image 
+name: Build image
 
-on: 
+on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
-
-  build: 
-
+  build:
     runs-on: ubuntu-latest
 
-    steps: 
-    - uses: actions/checkout@v3
-    - name: Log in Docker
-      env: 
-        DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-      run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-    - name: Build the Docker image 
-       run: docker build . --file Dockerfile --tag leshafatin/lab-3:${date +%s}
-    - name: Docker Push
-       run: docker push ${{DOCKER_USERNAME}}/devops-lab3
-      
-    
-        
-    
+    steps:
+      - uses: actions/checkout@v3
+      - name: Log in Docker
+        env:
+          DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag leshafatin/lab-3:${date +%s}
+      - name: Docker Push
+        run: docker push ${{DOCKER_USERNAME}}/devops-lab3
